@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA 6 - Official Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #ff0000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ff0000;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.9) 100%);
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23000" width="1200" height="600"/><text x="600" y="300" font-size="120" fill="%23ff0000" text-anchor="middle" font-weight="bold">GTA VI</text></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: #ff0000;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            margin: 0.5rem;
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #ff0000;
+            color: #ff0000;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background-color: #1a1a1a;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-left: 4px solid #ff0000;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .feature-card:hover {
+            background-color: #333;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            color: #ff0000;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 4rem 2rem;
+            background-color: #0a0a0a;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            background-color: #2a2a2a;
+            aspect-ratio: 16/9;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #ff0000;
+            font-weight: bold;
+            border: 2px solid #333;
+        }
+
+        .gallery-item:hover {
+            border-color: #ff0000;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Characters Section */
+        .characters {
+            padding: 4rem 2rem;
+            background-color: #1a1a1a;
+        }
+
+        .characters h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .character-card {
+            background-color: #2a2a2a;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .character-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ff0000, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .character-info {
+            padding: 1.5rem;
+        }
+
+        .character-info h3 {
+            color: #ff0000;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .character-info p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* News Section */
+        .news {
+            padding: 4rem 2rem;
+            background-color: #0a0a0a;
+        }
+
+        .news h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+
+        .news-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-item {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #ff0000;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .news-item:hover {
+            background-color: #333;
+            transform: translateX(10px);
+        }
+
+        .news-date {
+            color: #ff0000;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-item h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .news-item p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: #2a2a2a;
+            margin: 10% auto;
+            padding: 2rem;
+            border: 2px solid #ff0000;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 4px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .close {
+            color: #ff0000;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #cc0000;
+        }
+
+        .modal h2 {
+            color: #ff0000;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .modal p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid #ff0000;
+            color: #999;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #ff0000;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .features h2, .gallery h2, .characters h2, .news h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">GTA VI</div>
+        <ul class="nav-links">
+            <li><a onclick="scrollToSection('features')">Features</a></li>
+            <li><a onclick="scrollToSection('gallery')">Gallery</a></li>
+            <li><a onclick="scrollToSection('characters')">Characters</a></li>
+            <li><a onclick="scrollToSection('news')">News</a></li>
+            <li><a onclick="openModal('contactModal')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>GTA VI</h1>
+            <p>Welcome to Vice City. The Future of Gaming Awaits.</p>
+            <button class="btn" onclick="openModal('preorderModal')">Pre-Order Now</button>
+            <button class="btn btn-secondary" onclick="openModal('trailerModal')">Watch Trailer</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Game Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🌃 Expansive World</h3>
+                <p>Explore the massive, dynamic world of Vice City with stunning graphics and detailed environments. From bustling streets to hidden alleyways.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ High-Speed Action</h3>
+                <p>Experience intense missions, thrilling heists, and heart-pounding combat. Every moment is action-packed with incredible gameplay mechanics.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎮 Next-Gen Graphics</h3>
+                <p>Powered by cutting-edge technology, enjoy realistic physics, lighting, and character animations that bring Vice City to life.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎵 Soundtrack</h3>
+                <p>Immerse yourself in an incredible original soundtrack featuring multiple radio stations and music from top artists worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌐 Online Multiplayer</h3>
+                <p>Play with friends and compete against millions in our massive online playground with endless possibilities and activities.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎭 Deep Story</h3>
+                <p>Engage with compelling characters and a gripping narrative that challenges your choices and shapes the story's outcome.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openModal('galleryModal1')">Screenshot 1</div>
+            <div class="gallery-item" onclick="openModal('galleryModal2')">Screenshot 2</div>
+            <div class="gallery-item" onclick="openModal('galleryModal3')">Screenshot 3</div>
+            <div class="gallery-item" onclick="openModal('galleryModal4')">Screenshot 4</div>
+            <div class="gallery-item" onclick="openModal('galleryModal5')">Screenshot 5</div>
+            <div class="gallery-item" onclick="openModal('galleryModal6')">Screenshot 6</div>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section class="characters" id="characters">
+        <h2>Main Characters</h2>
+        <div class="characters-grid">
+            <div class="character-card" onclick="openModal('char1Modal')">
+                <div class="character-image">👨</div>
+                <div class="character-info">
+                    <h3>Jason</h3>
+                    <p>A street racer turned criminal. Quick-witted and fearless.</p>
+                </div>
+            </div>
+            <div class="character-card" onclick="openModal('char2Modal')">
+                <div class="character-image">👩</div>
+                <div class="character-info">
+                    <h3>Lucia</h3>
+                    <p>Intelligent and strategic. Master of deception and planning.</p>
+                </div>
+            </div>
+            <div class="character-card" onclick="openModal('char3Modal')">
+                <div class="character-image">🕴️</div>
+                <div class="character-info">
+                    <h3>Marcus</h3>
+                    <p>Ruthless crime boss with connections throughout Vice City.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news" id="news">
+        <h2>Latest News</h2>
+        <div class="news-container">
+            <div class="news-item">
+                <div class="news-date">September 4, 2026</div>
+                <h3>GTA VI Hits Record Pre-Orders!</h3>
+                <p>The highly anticipated sequel has already broken pre-order records with millions of copies reserved worldwide. Fans are excited for the Vice City experience.</p>
+            </div>
+            <div class="news-item">
+                <div class="news-date">August 28, 2026</div>
+                <h3>New Gameplay Trailer Released</h3>
+                <p>Check out our latest gameplay trailer showcasing the new mission types, vehicle customization, and the stunning Vice City landscape.</p>
+            </div>
+            <div class="news-item">
+                <div class="news-date">August 15, 2026</div>
+                <h3>Behind the Scenes: Creating Vice City</h3>
+                <p>Our development team shares insights on how they created the most detailed open world ever. Learn about the creative process and inspiration.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div id="preorderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('preorderModal')">&times;</span>
+            <h2>Pre-Order GTA VI</h2>
+            <p>Secure your copy of GTA VI today and get exclusive bonuses:</p>
+            <ul style="color: #bbb; margin-left: 2rem; margin-bottom: 1rem;">
+                <li>$500,000 in-game cash</li>
+                <li>Exclusive weapon and vehicle skins</li>
+                <li>Early access to online multiplayer</li>
+                <li>Exclusive in-game apartments</li>
+            </ul>
+            <button class="btn" onclick="alert('Thank you for your interest! Pre-orders are now being accepted.')">Complete Pre-Order</button>
+        </div>
+    </div>
+
+    <div id="trailerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('trailerModal')">&times;</span>
+            <h2>GTA VI - Official Trailer</h2>
+            <p>Experience the stunning cinematic trailer that introduces the world of Vice City and its unforgettable characters. The journey begins now.</p>
+            <button class="btn" onclick="alert('▶️ Trailer playing... Enjoy the stunning visuals of Vice City!')">▶️ Play Trailer</button>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Have questions or feedback? We'd love to hear from you!</p>
+            <form onsubmit="return submitForm(event)">
+                <input type="text" placeholder="Your Name" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; background-color: #1a1a1a; border: 1px solid #ff0000; color: #fff; border-radius: 4px;" required>
+                <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; background-color: #1a1a1a; border: 1px solid #ff0000; color: #fff; border-radius: 4px;" required>
+                <textarea placeholder="Your Message" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; background-color: #1a1a1a; border: 1px solid #ff0000; color: #fff; border-radius: 4px; resize: vertical; min-height: 100px;" required></textarea>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="galleryModal1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('galleryModal1')">&times;</span>
+            <h2>Screenshot 1 - Vice City Streets</h2>
+            <div style="height: 300px; background: linear-gradient(135deg, #ff0000, #000); margin-bottom: 1rem; border-radius: 4px;"></div>
+            <p>Experience the vibrant streets of Vice City in stunning detail. This screenshot showcases the neon-lit downtown area during the evening hours.</p>
+        </div>
+    </div>
+
+    <div id="galleryModal2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('galleryModal2')">&times;</span>
+            <h2>Screenshot 2 - Beach Paradise</h2>
+            <div style="height: 300px; background: linear-gradient(135deg, #ff6600, #000); margin-bottom: 1rem; border-radius: 4px;"></div>
+            <p>Relax or cause chaos on the beautiful beaches of Vice City. The dynamic weather system and realistic water physics bring the tropical paradise to life.</p>
+        </div>
+    </div>
+
+    <div id="galleryModal3" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('galleryModal3')">&times;</span>
+            <h2>Screenshot 3 - Action Sequence</h2>
+            <div style="height: 300px; background: linear-gradient(135deg, #ff0000, #330000); margin-bottom: 1rem; border-radius: 4px;"></div>
+            <p>High-octane action with stunning vehicle physics and destruction. Every mission delivers intense gameplay and epic moments.</p>
+        </div>
+    </div>
+
+    <div id="galleryModal4" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('galleryModal4')">&times;</span>
+            <h2>Screenshot 4 - Nightlife</h2>
+            <div style="height: 300px; background: linear-gradient(135deg, #0088ff, #000); margin-bottom: 1rem; border-radius: 4px;"></div>
+            <p>Experience the vibrant nightlife scene with exclusive clubs, bars, and entertainment venues. The city truly comes alive after dark.</p>
+        </div>
+    </div>
+
+    <div id="galleryModal5" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('galleryModal5')">&times;</span>
+            <h2>Screenshot 5 - Customization</h2>
+            <div style="height: 300px; background: linear-gradient(135deg, #ffff00, #000); margin-bottom: 1rem; border-radius: 4px;"></div>
+            <p>Customize everything - from your character's appearance to vehicle upgrades and weapon loadouts. Make Vice City truly yours.</p>
+        </div>
+    </div>
+
+    <div id="galleryModal6" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('galleryModal6')">&times;</span>
+            <h2>Screenshot 6 - Multiplayer</h2>
+            <div style="height: 300px; background: linear-gradient(135deg, #ff00ff, #000); margin-bottom: 1rem; border-radius: 4px;"></div>
+            <p>Connect with millions of players worldwide in our expansive online multiplayer experience. Compete, cooperate, and explore together.</p>
+        </div>
+    </div>
+
+    <div id="char1Modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('char1Modal')">&times;</span>
+            <h2>Jason - The Street Racer</h2>
+            <p>Jason is a former street racer who gets pulled into the criminal underworld of Vice City. Known for his quick reflexes and fearless attitude, he becomes the protagonist of an unexpected journey through the city's darkest corners.</p>
+            <p><strong>Special Abilities:</strong> Expert driver, quick reflexes, street smarts</p>
+            <p><strong>Vehicles:</strong> High-performance sports cars and custom rides</p>
+        </div>
+    </div>
+
+    <div id="char2Modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('char2Modal')">&times;</span>
+            <h2>Lucia - The Strategist</h2>
+            <p>Lucia is a brilliant strategist with a mysterious past. She partners with Jason and brings intelligence and cunning to their operations. Her mastery of hacking and planning makes her an invaluable ally.</p>
+            <p><strong>Special Abilities:</strong> Hacking, planning, infiltration</p>
+            <p><strong>Expertise:</strong> Tech systems, social engineering</p>
+        </div>
+    </div>
+
+    <div id="char3Modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('char3Modal')">&times;</span>
+            <h2>Marcus - The Crime Lord</h2>
+            <p>Marcus is a ruthless crime boss who controls much of Vice City's underworld. With connections everywhere and resources beyond measure, he becomes a central figure in the game's narrative, offering both opportunities and threats.</p>
+            <p><strong>Special Abilities:</strong> Criminal connections, intimidation</p>
+            <p><strong>Resources:</strong> Money, weapons, safe houses</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Rockstar Games. All rights reserved.</p>
+        <p>GTA VI is a trademark of Rockstar Games, Inc.</p>
+        <div class="social-links">
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">YouTube</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll to sections
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form submission
+        function submitForm(event) {
+            event.preventDefault();
+            alert('Thank you for contacting us! We will get back to you soon.');
+            closeModal('contactModal');
+            return false;
+        }
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .gallery-item, .character-card, .news-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
